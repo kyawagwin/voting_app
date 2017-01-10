@@ -1,8 +1,23 @@
 const ProductList = React.createClass({
 	render: function() {
+		const products = Data.map((product) => {
+			return (
+				<Product 
+					key={'product-' + product.id}
+					id={product.id}
+					title={product.title}
+					description={product.description}
+					url={product.url}
+					votes={product.votes}
+					submitter_avatar_url={product.submitter_avatar_url}
+					product_image_url={product.product_image_url}
+				/>
+			);
+		});
+
 		return (
 			<div className='ui items'>
-				<Product />
+				{products}
 			</div>
 		);
 	},
@@ -14,16 +29,16 @@ const Product = React.createClass({
 		return (
 			<div className='item'>
 				<div className='image'>
-					<img src='images/products/image-aqua.png' />
+					<img src={this.props.product_image_url} />
 				</div>
 				<div className='middle aligned content'>
 					<div className='description'>
-						<a>Fort Night</a>
-						<p>Authentic actors, delivered in just two weeks.</p>
+						<a>{this.props.title}</a>
+						<p>{this.props.description}</p>
 					</div>
 					<div className='extra'>
 						<span>Submitted by:</span>
-						<img className='ui avatar image' src='images/avatars/daniel.jpg' />
+						<img className='ui avatar image' src={this.props.submitter_avatar_url} />
 					</div>
 				</div>
 			</div>
